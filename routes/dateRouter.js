@@ -11,8 +11,8 @@ router.get("/:date?",(req,res)=>{
         console.log(unix,utc)
         res.json({unix:unix,utc:utc})
     } else {
-        let utc = new Date(Number(date)).toUTCString()
-        let unix = new Date(Number(date)).getTime()
+        let utc = new Date(date).toUTCString()
+        let unix = new Date(date).getTime()
         console.log(unix,utc)
         res.json({unix:unix,utc:utc})
     }
