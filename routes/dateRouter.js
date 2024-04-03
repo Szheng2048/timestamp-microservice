@@ -8,7 +8,7 @@ router.get("/:date?",(req,res)=>{
         let unix = Date.now()
         let utc = newDate.toUTCString()
         res.json({unix:unix,utc:utc})
-    } else{
+    } else {
         let testArr = "1234567890"
         let isUnix =true
         for(let num of date){
@@ -20,8 +20,11 @@ router.get("/:date?",(req,res)=>{
         if(!isUnix){
             let utc = new Date(date).toUTCString()
             let unix = new Date(date).getTime()
-            console.log(unix,utc)
-            res.json({unix:unix,utc:utc})
+            if(utc === "Invalid Date"|| unix === null){
+                res.json({ error : "Invalid Date" })
+            } else {
+                res.json({unix:unix,utc:utc})
+            }
         } else {
             let utc = new Date(Number(date)).toUTCString()
             let unix = new Date(Number(date)).getTime()
